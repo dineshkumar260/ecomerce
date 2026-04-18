@@ -14,6 +14,11 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 console.log('Backend starting for Vercel Services...');
 
+// Health check
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', time: new Date().toISOString() });
+});
+
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
