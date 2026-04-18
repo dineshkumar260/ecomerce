@@ -6,22 +6,13 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-    origin: (origin, callback) => {
-        const allowed = ['https://ecommerce-eight-sand-12.vercel.app', 'http://localhost:5173'];
-        if (!origin || allowed.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Bypass-Tunnel-Reminder']
+    origin: true, // Allows all origins that pass through the Vercel Service gateway
+    credentials: true
 }));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
-console.log('Backend starting with CORS allowed for:', 'https://ecommerce-eight-sand-12.vercel.app');
+console.log('Backend starting for Vercel Services...');
 
 
 // Routes
